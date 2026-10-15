@@ -73,6 +73,9 @@ let activeResolver = null;
 let currentQueue = 0;
 const dynamicCache = new Map(); // text|style -> object URL
 
+// SINGLETON HTML5 Audio element — strictly guarantees ZERO audio overlap across the entire app
+const sharedAudio = typeof window !== 'undefined' && typeof Audio !== 'undefined' ? new Audio() : null;
+
 function pickVoice() {
   if (typeof window === 'undefined' || !('speechSynthesis' in window)) return null;
   const voices = window.speechSynthesis.getVoices();
@@ -133,50 +136,49 @@ async function getDynamicUrl(seg) {
   }
 }
 
-/** Plays an audio URL; resolves true when it ended normally, false if interrupted or failed. */
+/** Plays an audio URL on the singleton sharedAudio element; resolves true when ended normally, false if interrupted. */
 function playUrl(url, queueId) {
   return new Promise(resolve => {
-    if (audioMuted || queueId !== currentQueue) {
+    if (!sharedAudio || audioMuted || queueId !== currentQueue) {
       resolve(false);
       return;
     }
 
-    // Stop previous audio playback cleanly without advancing currentQueue
-    if (currentAudioElement) {
-      const prev = currentAudioElement;
-      currentAudioElement = null;
+    // 1. Immediately stop any active playback on the shared audio element
+    try {
+      sharedAudio.onended = null;
+      sharedAudio.onerror = null;
+      sharedAudio.pause();
+      sharedAudio.currentTime = 0;
+    } catch (e) {}
+
+    // 2. Cancel any pending speech synthesis
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       try {
-        prev.onended = null;
-        prev.onerror = null;
-        prev.pause();
-        prev.currentTime = 0;
-        prev.removeAttribute('src');
-        prev.load();
+        window.speechSynthesis.cancel();
       } catch (e) {}
     }
-
-    const audio = new Audio();
-    currentAudioElement = audio;
 
     let finished = false;
     const finish = (result) => {
       if (finished) return;
       finished = true;
       if (activeResolver === finish) activeResolver = null;
-      if (currentAudioElement === audio) currentAudioElement = null;
       try {
-        audio.onended = null;
-        audio.onerror = null;
+        if (sharedAudio) {
+          sharedAudio.onended = null;
+          sharedAudio.onerror = null;
+        }
       } catch (e) {}
       resolve(result && queueId === currentQueue);
     };
 
     activeResolver = finish;
-    audio.onended = () => finish(true);
-    audio.onerror = () => finish(false);
+    sharedAudio.onended = () => finish(true);
+    sharedAudio.onerror = () => finish(false);
 
-    audio.src = url;
-    const playPromise = audio.play();
+    sharedAudio.src = url;
+    const playPromise = sharedAudio.play();
     if (playPromise !== undefined) {
       playPromise.catch(() => finish(false));
     }
@@ -188,6 +190,20 @@ function fallbackSpeech(seg, queueId) {
     if (audioMuted || typeof window === 'undefined' || !('speechSynthesis' in window) || !seg.text || queueId !== currentQueue) {
       return resolve(false);
     }
+
+    // Stop shared audio before speaking
+    if (sharedAudio) {
+      try {
+        sharedAudio.pause();
+        sharedAudio.currentTime = 0;
+        sharedAudio.removeAttribute('src');
+      } catch (e) {}
+    }
+
+    try {
+      window.speechSynthesis.cancel();
+    } catch (e) {}
+
     const cfg = STYLE_SETTINGS[seg.style] || STYLE_SETTINGS.statement;
     const utter = new SpeechSynthesisUtterance(seg.text);
     if (ttsVoice) utter.voice = ttsVoice;
@@ -218,7 +234,7 @@ function fallbackSpeech(seg, queueId) {
 export async function speakSegment(seg, queueId = currentQueue) {
   if (audioMuted || !seg || !seg.text || queueId !== currentQueue) return;
 
-  // 1. Pre-generated static asset
+  // 1. Pre-generated static asset (highest priority, perfectly recorded Alice voice)
   if (seg.file) {
     await playUrl(seg.file, queueId);
     return;
@@ -232,7 +248,7 @@ export async function speakSegment(seg, queueId = currentQueue) {
     if (ok || audioMuted || queueId !== currentQueue) return;
   }
 
-  // 3. Browser speech synthesis fallback
+  // 3. Browser speech synthesis fallback (only for questions without pre-recorded mp3)
   if (audioMuted || queueId !== currentQueue) return;
   await fallbackSpeech(seg, queueId);
 }
@@ -240,8 +256,9 @@ export async function speakSegment(seg, queueId = currentQueue) {
 export async function narrate(segments, autoplay = true) {
   if (!segments) return;
   lastNarrationSegments = segments;
-  if (!autoplay || audioMuted) return;
   stopNarration();
+  if (!autoplay || audioMuted) return;
+
   const myQueue = ++currentQueue;
   const segList = Array.isArray(segments) ? segments : [segments];
   for (const seg of segList) {
@@ -261,16 +278,13 @@ export function stopNarration(clearHistory = false) {
     activeResolver = null;
     res(false);
   }
-  if (currentAudioElement) {
-    const el = currentAudioElement;
-    currentAudioElement = null;
+  if (sharedAudio) {
     try {
-      el.onended = null;
-      el.onerror = null;
-      el.pause();
-      el.currentTime = 0;
-      el.removeAttribute('src');
-      el.load();
+      sharedAudio.onended = null;
+      sharedAudio.onerror = null;
+      sharedAudio.pause();
+      sharedAudio.currentTime = 0;
+      sharedAudio.removeAttribute('src');
     } catch (e) {}
   }
   if (typeof window !== 'undefined' && 'speechSynthesis' in window) {

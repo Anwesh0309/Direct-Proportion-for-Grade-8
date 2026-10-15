@@ -68,6 +68,7 @@ export function App() {
   };
 
   const finishQuiz = (idx, starsEarned) => {
+    stopNarration();
     if (starsEarned != null) {
       setWorldResults(prev => {
         const next = [...prev];
@@ -107,7 +108,13 @@ export function App() {
         )}
 
         {phase === 'wonder' && (
-          <WonderPhase muted={muted} onNext={() => setPhase('story')} />
+          <WonderPhase
+            muted={muted}
+            onNext={() => {
+              stopNarration();
+              setPhase('story');
+            }}
+          />
         )}
 
         {phase === 'story' && (
@@ -115,6 +122,7 @@ export function App() {
             muted={muted}
             onSlideChange={handleSlideChange}
             onDone={() => {
+              stopNarration();
               setStorySlideInfo(null);
               setPhase('simulate');
             }}
@@ -122,17 +130,27 @@ export function App() {
         )}
 
         {phase === 'simulate' && (
-          <SimulatePhase muted={muted} onNext={() => setPhase('practice-worlds')} />
+          <SimulatePhase
+            muted={muted}
+            onNext={() => {
+              stopNarration();
+              setPhase('practice-worlds');
+            }}
+          />
         )}
 
         {phase === 'practice-worlds' && !done && (
           <PracticeWorldSelect
             worldResults={worldResults}
             onPlay={i => {
+              stopNarration();
               setActiveWorld(i);
               setPhase('practice-quiz');
             }}
-            onGoReflect={() => setPhase('reflect')}
+            onGoReflect={() => {
+              stopNarration();
+              setPhase('reflect');
+            }}
           />
         )}
 
@@ -152,7 +170,10 @@ export function App() {
             bestStreak={bestStreak}
             worldResults={worldResults}
             muted={muted}
-            onComplete={() => setDone(true)}
+            onComplete={() => {
+              stopNarration();
+              setDone(true);
+            }}
           />
         )}
 
