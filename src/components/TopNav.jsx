@@ -91,12 +91,18 @@ export function TopNav({ phase, completed = {}, muted, onToggleMute, onHome, onG
 
           {/* Audio Mute/Unmute Pill */}
           <button
-            onClick={onToggleMute}
-            className={`px-3.5 py-1.5 rounded-full font-display font-800 text-xs sm:text-sm flex items-center gap-2 transition-all duration-200 cursor-pointer border ${
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onToggleMute();
+            }}
+            className={`pointer-events-auto px-3.5 py-1.5 rounded-full font-display font-800 text-xs sm:text-sm flex items-center gap-2 transition-all duration-200 cursor-pointer border select-none ${
               muted
-                ? 'bg-rose-950/80 border-rose-400/50 text-rose-300'
-                : 'bg-emerald-950/80 border-emerald-400/50 text-emerald-300'
+                ? 'bg-rose-950/80 border-rose-400/50 text-rose-300 hover:bg-rose-900/80'
+                : 'bg-emerald-950/80 border-emerald-400/50 text-emerald-300 hover:bg-emerald-900/80'
             }`}
+            title={muted ? "Click to unmute narration" : "Click to mute narration"}
           >
             <span className="text-sm">{muted ? "🔇" : "🔊"}</span>
             <span className="text-xs sm:text-sm">{muted ? "Muted" : "Unmuted"}</span>

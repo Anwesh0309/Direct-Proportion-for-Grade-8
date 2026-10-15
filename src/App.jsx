@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import { setMuted, stopNarration } from './audio.js';
 import { TopNav } from './components/TopNav.jsx';
 import { IntroModal } from './stages/IntroPhase.jsx';
@@ -18,11 +18,6 @@ export function App() {
   const [done, setDone] = useState(false);
   const [storySlideInfo, setStorySlideInfo] = useState(null);
 
-  // Stop any audio immediately when phase changes to prevent overlapping
-  useEffect(() => {
-    stopNarration();
-  }, [phase]);
-
   const completed = {
     wonder: phase !== 'intro' && phase !== 'wonder',
     story: !['intro', 'wonder', 'story'].includes(phase),
@@ -34,11 +29,17 @@ export function App() {
   const totalStars = worldResults.reduce((a, b) => a + (b || 0), 0);
 
   const toggleMute = () => {
-    setMutedState(m => {
-      setMuted(!m);
-      return !m;
-    });
+    const next = !muted;
+    setMuted(next);
+    setMutedState(next);
   };
+
+  const handleSlideChange = useCallback((current, total) => {
+    setStorySlideInfo(prev => {
+      if (prev && prev.current === current && prev.total === total) return prev;
+      return { current, total };
+    });
+  }, []);
 
   // Completely reset user progress whenever entering or restarting the module
   const resetProgress = () => {
@@ -112,7 +113,7 @@ export function App() {
         {phase === 'story' && (
           <StoryPhase
             muted={muted}
-            onSlideChange={(current, total) => setStorySlideInfo({ current, total })}
+            onSlideChange={handleSlideChange}
             onDone={() => {
               setStorySlideInfo(null);
               setPhase('simulate');

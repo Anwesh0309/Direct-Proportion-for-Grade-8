@@ -3,10 +3,10 @@
    Voice: Alice (Clear, Engaging Educator) — Voice ID: Xb7hH8MSUJpSbSDYk0k2
    Model: eleven_multilingual_v2
 
-   Zero-Overlap Audio Guarantee:
+   Zero-Overlap Audio Guarantee & Mute Management:
    - Interrupting/skipping immediately halts active Audio elements and speech synthesis.
    - Any pending playback promises are resolved/cancelled instantly.
-   - Ongoing screen audio always takes over immediately without collision.
+   - Ongoing screen audio resumes cleanly on Unmute.
    ========================================================================= */
 export const VOICE_ID = "Xb7hH8MSUJpSbSDYk0k2";
 export const MODEL_ID = "eleven_multilingual_v2";
@@ -66,6 +66,7 @@ const API_KEY =
   (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_ELEVENLABS_API_KEY) || '';
 
 export let audioMuted = false;
+let lastNarrationSegments = null;
 let ttsVoice = null;
 let currentAudioElement = null;
 let activeResolver = null;
@@ -90,9 +91,12 @@ if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
   ttsVoice = pickVoice();
 }
 
+/** Toggles mute state. Halts active audio immediately when muted. */
 export function setMuted(m) {
-  audioMuted = m;
-  if (m) stopNarration();
+  audioMuted = Boolean(m);
+  if (audioMuted) {
+    stopNarration();
+  }
 }
 
 /** Dynamic request to ElevenLabs with per-style voice settings. Resolves to an object URL or null. */
@@ -139,13 +143,16 @@ function playUrl(url, queueId) {
 
     // Stop previous audio playback cleanly without advancing currentQueue
     if (currentAudioElement) {
-      try {
-        currentAudioElement.onended = null;
-        currentAudioElement.onerror = null;
-        currentAudioElement.pause();
-        currentAudioElement.src = '';
-      } catch (e) {}
+      const prev = currentAudioElement;
       currentAudioElement = null;
+      try {
+        prev.onended = null;
+        prev.onerror = null;
+        prev.pause();
+        prev.currentTime = 0;
+        prev.removeAttribute('src');
+        prev.load();
+      } catch (e) {}
     }
 
     const audio = new Audio();
@@ -169,7 +176,10 @@ function playUrl(url, queueId) {
     audio.onerror = () => finish(false);
 
     audio.src = url;
-    audio.play().catch(() => finish(false));
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => finish(false));
+    }
   });
 }
 
@@ -210,8 +220,8 @@ export async function speakSegment(seg, queueId = currentQueue) {
 
   // 1. Pre-generated static asset
   if (seg.file) {
-    const ok = await playUrl(seg.file, queueId);
-    if (ok || audioMuted || queueId !== currentQueue) return;
+    await playUrl(seg.file, queueId);
+    return;
   }
 
   // 2. Dynamic ElevenLabs request (fallback if static file is not present)
@@ -228,6 +238,8 @@ export async function speakSegment(seg, queueId = currentQueue) {
 }
 
 export async function narrate(segments, autoplay = true) {
+  if (!segments) return;
+  lastNarrationSegments = segments;
   if (!autoplay || audioMuted) return;
   stopNarration();
   const myQueue = ++currentQueue;
@@ -239,23 +251,27 @@ export async function narrate(segments, autoplay = true) {
 }
 
 /** Immediately stops any current audio playback, pending promises, and synthesis. */
-export function stopNarration() {
+export function stopNarration(clearHistory = false) {
   currentQueue++;
+  if (clearHistory) {
+    lastNarrationSegments = null;
+  }
   if (activeResolver) {
     const res = activeResolver;
     activeResolver = null;
     res(false);
   }
   if (currentAudioElement) {
-    try {
-      currentAudioElement.onended = null;
-      currentAudioElement.onerror = null;
-      currentAudioElement.pause();
-      currentAudioElement.currentTime = 0;
-      currentAudioElement.src = '';
-      currentAudioElement.load();
-    } catch (e) {}
+    const el = currentAudioElement;
     currentAudioElement = null;
+    try {
+      el.onended = null;
+      el.onerror = null;
+      el.pause();
+      el.currentTime = 0;
+      el.removeAttribute('src');
+      el.load();
+    } catch (e) {}
   }
   if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
     try {

@@ -82,16 +82,21 @@ export function StoryPhase({ muted, onDone, onSlideChange }) {
   const [slideIdx, setSlideIdx] = useState(0);
   const slide = STORY_SLIDES[slideIdx];
 
+  // 1. Notify parent about current slide progress only when slideIdx changes
   useEffect(() => {
     if (onSlideChange) {
       onSlideChange(slideIdx + 1, STORY_SLIDES.length);
     }
+  }, [slideIdx, onSlideChange]);
+
+  // 2. Play audio narration for the active slide without re-render loop
+  useEffect(() => {
     const audioData = AUDIO_MAP[slide.audioKey];
     if (audioData) {
       narrate(audioData, !muted);
     }
     return () => stopNarration();
-  }, [slideIdx, muted, onSlideChange]);
+  }, [slideIdx, muted]);
 
   const goNext = () => {
     stopNarration();
