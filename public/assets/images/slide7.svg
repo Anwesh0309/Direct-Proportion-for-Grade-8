@@ -1,0 +1,190 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <!-- Grand Library Starlight Ambience -->
+    <linearGradient id="libBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0e0422" />
+      <stop offset="35%" stop-color="#1e0c45" />
+      <stop offset="70%" stop-color="#311068" />
+      <stop offset="100%" stop-color="#0a0219" />
+    </linearGradient>
+
+    <!-- Golden Ladder Glow -->
+    <linearGradient id="ladderRungGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="50%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+
+    <linearGradient id="ladderRungGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ca8a04" />
+      <stop offset="50%" stop-color="#facc15" />
+      <stop offset="100%" stop-color="#ca8a04" />
+    </linearGradient>
+
+    <linearGradient id="hairGrad7" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#854d0e" />
+      <stop offset="40%" stop-color="#713f12" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+
+    <linearGradient id="irisGrad7" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="40%" stop-color="#4338ca" />
+      <stop offset="80%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#a5f3fc" />
+    </linearGradient>
+
+    <filter id="glow7" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="b" />
+      <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="1024" fill="url(#libBg)" />
+
+  <!-- Floating Magical Books & Mathematical Runes in Library Air -->
+  <g opacity="0.35" fill="#facc15">
+    <circle cx="160" cy="180" r="3" /><circle cx="340" cy="120" r="2" /><circle cx="820" cy="160" r="4" />
+    <circle cx="920" cy="280" r="3" /><circle cx="120" cy="380" r="2.5" />
+  </g>
+
+  <!-- Top Title Plaque Banner -->
+  <g transform="translate(162, 45)" filter="url(#glow7)">
+    <rect width="700" height="70" rx="35" fill="#150a36" fill-opacity="0.95" stroke="#facc15" stroke-width="3" />
+    <text x="350" y="47" font-family="'Fredoka One', Nunito, sans-serif" font-size="32" font-weight="900" fill="#facc15" text-anchor="middle">
+      🪜 The Unitary Method: Find ONE, Find ANY! 🪜
+    </text>
+  </g>
+
+  <!-- THE GLOWING 3-RUNG STAIRCASE OF PROPORTION -->
+  <!-- RUNG 1 (BOTTOM GIVEN): 5 PENS = ₹60 -->
+  <g transform="translate(380, 640)" filter="url(#glow7)">
+    <rect width="560" height="120" rx="24" fill="#150a36" fill-opacity="0.95" stroke="#38bdf8" stroke-width="3.5" />
+    <circle cx="60" cy="60" r="36" fill="#0369a1" />
+    <text x="60" y="74" font-size="40" text-anchor="middle">🖊️</text>
+    <text x="120" y="52" font-family="'Fredoka One', Nunito, sans-serif" font-size="24" font-weight="900" fill="#ffffff">
+      GIVEN: 5 Pens cost ₹60
+    </text>
+    <text x="120" y="88" font-family="'Fredoka One', Nunito, sans-serif" font-size="18" font-weight="900" fill="#38bdf8">
+      Baseline benchmark clue
+    </text>
+    <rect x="420" y="35" width="115" height="50" rx="14" fill="#0284c7" />
+    <text x="477" y="68" font-family="'Fredoka One', Nunito, sans-serif" font-size="22" font-weight="900" fill="#ffffff" text-anchor="middle">
+      5 ➔ ₹60
+    </text>
+  </g>
+
+  <!-- STEP 1 TRANSITION ARROW: DIVIDE BY 5 -->
+  <g transform="translate(660, 565)">
+    <rect x="-100" y="-18" width="200" height="36" rx="18" fill="#ec4899" stroke="#f472b6" stroke-width="2" />
+    <text x="0" y="6" font-family="'Fredoka One', Nunito, sans-serif" font-size="17" font-weight="900" fill="#ffffff" text-anchor="middle">
+      ⬇️ Step 1: ÷ 5 to find ONE
+    </text>
+  </g>
+
+  <!-- RUNG 2 (MIDDLE UNITARY STEP): 1 PEN = ₹12 -->
+  <g transform="translate(380, 420)" filter="url(#glow7)">
+    <rect width="560" height="120" rx="24" fill="#150a36" fill-opacity="0.95" stroke="#facc15" stroke-width="4" />
+    <circle cx="60" cy="60" r="36" fill="#ca8a04" />
+    <text x="60" y="74" font-size="40" text-anchor="middle">⭐</text>
+    <text x="120" y="52" font-family="'Fredoka One', Nunito, sans-serif" font-size="24" font-weight="900" fill="#facc15">
+      KEY UNIT: 1 Pen costs ₹12!
+    </text>
+    <text x="120" y="88" font-family="'Fredoka One', Nunito, sans-serif" font-size="18" font-weight="900" fill="#fde047">
+      Calculation: 60 ÷ 5 = 12 (Constant k)
+    </text>
+    <rect x="420" y="35" width="115" height="50" rx="14" fill="#b45309" />
+    <text x="477" y="68" font-family="'Fredoka One', Nunito, sans-serif" font-size="22" font-weight="900" fill="#facc15" text-anchor="middle">
+      1 ➔ ₹12
+    </text>
+  </g>
+
+  <!-- STEP 2 TRANSITION ARROW: MULTIPLY BY 8 -->
+  <g transform="translate(660, 345)">
+    <rect x="-105" y="-18" width="210" height="36" rx="18" fill="#15803d" stroke="#4ade80" stroke-width="2" />
+    <text x="0" y="6" font-family="'Fredoka One', Nunito, sans-serif" font-size="17" font-weight="900" fill="#ffffff" text-anchor="middle">
+      ⬆️ Step 2: × 8 to scale up
+    </text>
+  </g>
+
+  <!-- RUNG 3 (TOP TARGET STEP): 8 PENS = ₹96 -->
+  <g transform="translate(380, 200)" filter="url(#glow7)">
+    <rect width="560" height="120" rx="24" fill="#150a36" fill-opacity="0.95" stroke="#4ade80" stroke-width="4" />
+    <circle cx="60" cy="60" r="36" fill="#15803d" />
+    <text x="60" y="74" font-size="40" text-anchor="middle">🎉</text>
+    <text x="120" y="52" font-family="'Fredoka One', Nunito, sans-serif" font-size="24" font-weight="900" fill="#4ade80">
+      TARGET: 8 Pens cost ₹96!
+    </text>
+    <text x="120" y="88" font-family="'Fredoka One', Nunito, sans-serif" font-size="18" font-weight="900" fill="#86efac">
+      Calculation: 8 × 12 = 96 rupees!
+    </text>
+    <rect x="420" y="35" width="115" height="50" rx="14" fill="#166534" />
+    <text x="477" y="68" font-family="'Fredoka One', Nunito, sans-serif" font-size="22" font-weight="900" fill="#4ade80" text-anchor="middle">
+      8 ➔ ₹96
+    </text>
+  </g>
+
+  <!-- ANIME CHARACTER: ZARA (Climbing on the Left with Epiphany "Aha!" Look) -->
+  <g transform="translate(60, 240)">
+    <!-- Back Hair Flowing -->
+    <path d="M 140 230 C 80 290 60 430 90 530 C 110 460 130 380 160 310 Z" fill="#451a03" />
+    <path d="M 280 230 C 340 290 360 430 330 530 C 310 460 290 380 260 310 Z" fill="#451a03" />
+
+    <!-- Torso: School Uniform -->
+    <path d="M 140 330 L 280 330 L 305 560 L 115 560 Z" fill="#312e81" stroke="#1e1b4b" stroke-width="2" />
+    <polygon points="180,330 240,330 210,410" fill="#ffffff" />
+    <path d="M 155,325 L 210,395 L 265,325 L 275,340 L 210,420 L 145,340 Z" fill="#1e1b4b" stroke="#facc15" stroke-width="2" />
+    <circle cx="210" cy="405" r="7" fill="#dc2626" />
+
+    <!-- Neck & Face -->
+    <rect x="195" y="280" width="30" height="55" fill="#fed7aa" rx="6" />
+    <path d="M 140 220 Q 135 285 178 320 Q 210 340 242 320 Q 285 285 280 220 Z" fill="#ffedd5" />
+    <ellipse cx="165" cy="290" rx="14" ry="7" fill="#f43f5e" opacity="0.45" />
+    <ellipse cx="255" cy="290" rx="14" ry="7" fill="#f43f5e" opacity="0.45" />
+
+    <!-- Nose & Radiant Smile -->
+    <path d="M 209 280 L 211 286 L 207 287" fill="none" stroke="#d97706" stroke-width="1.5" />
+    <path d="M 194 300 Q 210 322 226 300" fill="#ef4444" stroke="#b91c1c" stroke-width="1.5" />
+
+    <!-- Wide Sparkle Eyes ("Aha! Eureka!" Expression) -->
+    <g transform="translate(155, 245)">
+      <path d="M 0 10 Q 14 -4 28 6" fill="none" stroke="#1e1b4b" stroke-width="3.5" stroke-linecap="round" />
+      <ellipse cx="15" cy="14" rx="10" ry="14" fill="url(#irisGrad7)" />
+      <ellipse cx="15" cy="15" rx="5" ry="7" fill="#0f172a" />
+      <circle cx="11" cy="8" r="4.5" fill="#ffffff" />
+      <circle cx="19" cy="18" r="2.2" fill="#ffffff" />
+      <circle cx="15" cy="14" r="2" fill="#facc15" opacity="0.8" />
+    </g>
+    <g transform="translate(225, 245)">
+      <path d="M 0 6 Q 14 -4 28 10" fill="none" stroke="#1e1b4b" stroke-width="3.5" stroke-linecap="round" />
+      <ellipse cx="13" cy="14" rx="10" ry="14" fill="url(#irisGrad7)" />
+      <ellipse cx="13" cy="15" rx="5" ry="7" fill="#0f172a" />
+      <circle cx="9" cy="8" r="4.5" fill="#ffffff" />
+      <circle cx="17" cy="18" r="2.2" fill="#ffffff" />
+      <circle cx="13" cy="14" r="2" fill="#facc15" opacity="0.8" />
+    </g>
+
+    <!-- Hair Bangs -->
+    <path d="M 130 220 Q 120 140 210 140 Q 300 140 290 220 Q 270 170 240 185 Q 210 170 180 190 Q 150 175 130 220 Z" fill="url(#hairGrad7)" />
+    <path d="M 145 190 Q 155 255 165 260 Q 160 215 168 190 Z" fill="#713f12" />
+    <path d="M 195 185 Q 208 250 215 255 Q 220 215 225 185 Z" fill="#854d0e" />
+    <path d="M 245 190 Q 255 255 260 260 Q 256 215 260 190 Z" fill="#713f12" />
+    <circle cx="260" cy="180" r="8" fill="#facc15" />
+
+    <!-- Both Arms Reaching Up toward the Steps of Light -->
+    <path d="M 270 340 Q 330 300 350 220" fill="none" stroke="#312e81" stroke-width="22" stroke-linecap="round" />
+    <circle cx="355" cy="215" r="14" fill="#fed7aa" />
+
+    <path d="M 140 340 Q 100 280 130 210" fill="none" stroke="#312e81" stroke-width="22" stroke-linecap="round" />
+    <circle cx="132" cy="205" r="14" fill="#fed7aa" />
+  </g>
+
+  <!-- Bottom Balanced Ratio Formula Banner -->
+  <g transform="translate(100, 890)" filter="url(#glow7)">
+    <rect width="824" height="75" rx="37" fill="#150a36" fill-opacity="0.95" stroke="#facc15" stroke-width="3" />
+    <text x="412" y="47" font-family="'Fredoka One', Nunito, sans-serif" font-size="26" font-weight="900" fill="#fde047" text-anchor="middle">
+      ✨ 1) DIVIDE to find 1 unit  ➔  2) MULTIPLY to scale to ANY amount! ✨
+    </text>
+  </g>
+</svg>

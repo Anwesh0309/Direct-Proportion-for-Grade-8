@@ -1,0 +1,291 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <!-- Background Sky Gradients (Makoto Shinkai Sunset Aesthetics) -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e1045" />
+      <stop offset="35%" stop-color="#3b1d74" />
+      <stop offset="65%" stop-color="#7e22ce" />
+      <stop offset="85%" stop-color="#f43f5e" />
+      <stop offset="100%" stop-color="#fbbf24" />
+    </linearGradient>
+
+    <!-- Sun & Atmosphere Glow -->
+    <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="1" />
+      <stop offset="30%" stop-color="#fde047" stop-opacity="0.85" />
+      <stop offset="70%" stop-color="#f97316" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Cloud Gradients -->
+    <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+      <stop offset="60%" stop-color="#fed7aa" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#f472b6" stop-opacity="0.6" />
+    </linearGradient>
+
+    <!-- Hill Gradient -->
+    <linearGradient id="hillGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#15803d" />
+      <stop offset="60%" stop-color="#047857" />
+      <stop offset="100%" stop-color="#064e3b" />
+    </linearGradient>
+
+    <!-- Anime Hair Gradient -->
+    <linearGradient id="hairGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#854d0e" />
+      <stop offset="40%" stop-color="#713f12" />
+      <stop offset="100%" stop-color="#451a03" />
+    </linearGradient>
+
+    <!-- Eye Gradient -->
+    <linearGradient id="irisGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="40%" stop-color="#4338ca" />
+      <stop offset="80%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#a5f3fc" />
+    </linearGradient>
+
+    <!-- Anime Glow Filter -->
+    <filter id="animeGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Sky Background -->
+  <rect width="1024" height="1024" fill="url(#skyGrad)" />
+
+  <!-- Sunset Sun Orb -->
+  <circle cx="780" cy="520" r="240" fill="url(#sunGlow)" />
+  <circle cx="780" cy="520" r="70" fill="#fffef0" filter="url(#softGlow)" />
+
+  <!-- Fluffy Anime Sunset Clouds -->
+  <path d="M 60 420 Q 110 370 170 390 Q 230 350 310 380 Q 380 360 430 400 Q 480 430 450 480 L 50 480 Z" fill="url(#cloudGrad)" opacity="0.65" />
+  <path d="M 520 340 Q 580 290 660 310 Q 730 270 820 300 Q 900 280 960 330 Q 1000 380 950 420 L 500 420 Z" fill="url(#cloudGrad)" opacity="0.75" />
+  <path d="M 680 440 Q 750 390 830 410 Q 910 380 980 430 L 650 480 Z" fill="url(#cloudGrad)" opacity="0.5" />
+
+  <!-- Distant Mountains -->
+  <path d="M 0 680 L 220 540 L 410 630 L 620 510 L 840 610 L 1024 530 L 1024 780 L 0 780 Z" fill="#31135e" opacity="0.85" />
+  <path d="M 0 720 L 180 610 L 390 690 L 670 580 L 890 660 L 1024 590 L 1024 820 L 0 820 Z" fill="#1e1045" opacity="0.9" />
+
+  <!-- Winding Coastal Roadway Below -->
+  <path d="M 1024 740 Q 700 750 500 810 Q 320 860 120 1024 L 280 1024 Q 450 890 650 840 Q 820 800 1024 790 Z" fill="#334155" />
+  <path d="M 1024 765 Q 700 775 500 835 Q 320 885 180 1024" fill="none" stroke="#facc15" stroke-width="4" stroke-dasharray="24 16" />
+
+  <!-- Cute Yellow Anime Car on Highway -->
+  <g transform="translate(680, 750) scale(0.65)">
+    <!-- Car shadow -->
+    <ellipse cx="70" cy="55" rx="65" ry="14" fill="#090514" opacity="0.6" />
+    <!-- Car body -->
+    <rect x="15" y="22" width="110" height="28" rx="14" fill="#facc15" stroke="#ca8a04" stroke-width="2" />
+    <!-- Car cabin roof -->
+    <path d="M 38 22 Q 48 5 65 5 L 95 5 Q 112 5 118 22 Z" fill="#fde047" stroke="#ca8a04" stroke-width="2" />
+    <!-- Windows with sky reflection -->
+    <path d="M 44 20 L 52 8 L 74 8 L 74 20 Z" fill="#38bdf8" opacity="0.85" />
+    <path d="M 78 20 L 78 8 L 94 8 L 108 20 Z" fill="#38bdf8" opacity="0.85" />
+    <!-- Wheels -->
+    <circle cx="38" cy="50" r="14" fill="#1e293b" stroke="#64748b" stroke-width="3" />
+    <circle cx="38" cy="50" r="6" fill="#cbd5e1" />
+    <circle cx="102" cy="50" r="14" fill="#1e293b" stroke="#64748b" stroke-width="3" />
+    <circle cx="102" cy="50" r="6" fill="#cbd5e1" />
+    <!-- Headlight glow beam -->
+    <polygon points="125,28 190,18 190,48 125,38" fill="url(#sunGlow)" opacity="0.6" />
+    <!-- Fuel symbol speech balloon -->
+    <g transform="translate(45, -35)">
+      <rect x="0" y="0" width="56" height="30" rx="15" fill="#1e1045" stroke="#38bdf8" stroke-width="2" />
+      <text x="28" y="21" font-size="16" text-anchor="middle">⛽ ➔ 🚗</text>
+    </g>
+  </g>
+
+  <!-- Foreground Grassy Hillside with Wildflowers -->
+  <path d="M -20 720 Q 220 680 440 760 Q 640 830 800 1024 L -20 1024 Z" fill="url(#hillGrad)" />
+  <path d="M -20 740 Q 180 710 380 790 Q 560 860 700 1024 L -20 1024 Z" fill="#166534" opacity="0.5" />
+
+  <!-- Wildflowers & Grass Blades -->
+  <g fill="#fde047" opacity="0.9">
+    <circle cx="80" cy="790" r="4" /><circle cx="120" cy="820" r="5" /><circle cx="210" cy="850" r="4" />
+    <circle cx="310" cy="890" r="5" /><circle cx="170" cy="810" r="3.5" /><circle cx="260" cy="870" r="4" />
+  </g>
+  <g fill="#f43f5e" opacity="0.9">
+    <circle cx="95" cy="805" r="4" /><circle cx="145" cy="835" r="4" /><circle cx="235" cy="875" r="5" />
+  </g>
+
+  <!-- ANIME CHARACTER: ZARA (Foreground Left-Center) -->
+  <g transform="translate(80, 260)">
+    <!-- Character Ambient Shadow -->
+    <ellipse cx="260" cy="620" rx="140" ry="25" fill="#052e16" opacity="0.7" />
+
+    <!-- Back Hair Flowing in Breeze -->
+    <path d="M 180 200 C 130 260 110 380 140 480 C 160 410 180 340 210 280 Z" fill="#451a03" />
+    <path d="M 330 200 C 390 260 420 380 390 480 C 370 410 340 330 310 270 Z" fill="#451a03" />
+
+    <!-- Body / Torso (School Sailor Blazer Outfit) -->
+    <!-- Legs / Pleated Skirt -->
+    <path d="M 205 450 L 315 450 L 335 550 L 185 550 Z" fill="#1e1b4b" stroke="#312e81" stroke-width="2" />
+    <!-- Skirt pleat lines -->
+    <line x1="220" y1="450" x2="210" y2="550" stroke="#4338ca" stroke-width="2" />
+    <line x1="245" y1="450" x2="240" y2="550" stroke="#4338ca" stroke-width="2" />
+    <line x1="270" y1="450" x2="270" y2="550" stroke="#4338ca" stroke-width="2" />
+    <line x1="295" y1="450" x2="300" y2="550" stroke="#4338ca" stroke-width="2" />
+
+    <!-- Legs with Navy Knee Socks -->
+    <rect x="220" y="550" width="28" height="60" fill="#1e1b4b" rx="8" />
+    <rect x="272" y="550" width="28" height="60" fill="#1e1b4b" rx="8" />
+    <!-- Brown Loafers -->
+    <ellipse cx="234" cy="614" rx="18" ry="10" fill="#78350f" />
+    <ellipse cx="286" cy="614" rx="18" ry="10" fill="#78350f" />
+
+    <!-- Blazer Body -->
+    <path d="M 200 310 Q 185 380 205 455 L 315 455 Q 335 380 320 310 Z" fill="#312e81" stroke="#1e1b4b" stroke-width="2" />
+    <!-- White Sailor Shirt Inner -->
+    <polygon points="235,310 285,310 260,380" fill="#ffffff" />
+    <!-- Sailor Collar (Royal Blue with Gold Trim) -->
+    <path d="M 215 305 L 260 375 L 305 305 L 320 325 L 260 405 L 200 325 Z" fill="#1e1b4b" stroke="#facc15" stroke-width="2" />
+    <!-- Red Ribbon Bow -->
+    <circle cx="260" cy="385" r="7" fill="#dc2626" />
+    <path d="M 260 385 L 240 375 L 242 395 Z" fill="#ef4444" />
+    <path d="M 260 385 L 280 375 L 278 395 Z" fill="#ef4444" />
+    <path d="M 256 390 L 248 420 L 258 412 L 262 422 Z" fill="#dc2626" />
+
+    <!-- Neck & Head Base -->
+    <rect x="246" y="270" width="28" height="42" fill="#fed7aa" rx="6" />
+    <!-- Anime Jaw & Face Contour -->
+    <path d="M 205 210 Q 200 270 235 305 Q 260 325 285 305 Q 320 270 315 210 Z" fill="#ffedd5" stroke="#fbcfe8" stroke-width="1.5" />
+    <!-- Cute Cheek Blush -->
+    <ellipse cx="225" cy="275" rx="12" ry="6" fill="#f43f5e" opacity="0.45" />
+    <ellipse cx="295" cy="275" rx="12" ry="6" fill="#f43f5e" opacity="0.45" />
+    <text x="225" y="278" font-size="9" fill="#e11d48" font-weight="bold" opacity="0.6">///</text>
+    <text x="295" y="278" font-size="9" fill="#e11d48" font-weight="bold" opacity="0.6">///</text>
+
+    <!-- Anime Nose & Sweet Smile -->
+    <path d="M 259 268 L 261 273 L 257 274" fill="none" stroke="#d97706" stroke-width="1.5" stroke-linecap="round" />
+    <path d="M 248 288 Q 260 298 272 288" fill="#e11d48" stroke="#be123c" stroke-width="1.5" />
+
+    <!-- Anime Left Eye (Viewer's Left) -->
+    <g transform="translate(220, 240)">
+      <!-- Eyelash Line Top -->
+      <path d="M 0 10 Q 12 -4 26 6" fill="none" stroke="#1e1b4b" stroke-width="3.5" stroke-linecap="round" />
+      <path d="M 24 5 L 28 0" stroke="#1e1b4b" stroke-width="2.5" stroke-linecap="round" />
+      <!-- Iris -->
+      <ellipse cx="14" cy="14" rx="9" ry="12" fill="url(#irisGrad)" />
+      <!-- Pupil -->
+      <ellipse cx="14" cy="15" rx="5" ry="7" fill="#0f172a" />
+      <!-- Big Sparkle Catchlights -->
+      <circle cx="10" cy="9" r="4" fill="#ffffff" />
+      <circle cx="17" cy="18" r="2" fill="#ffffff" />
+      <!-- Bottom Eyelash Line -->
+      <path d="M 4 23 Q 14 26 22 21" fill="none" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" />
+    </g>
+
+    <!-- Anime Right Eye (Viewer's Right) -->
+    <g transform="translate(275, 240)">
+      <!-- Eyelash Line Top -->
+      <path d="M 0 6 Q 14 -4 26 10" fill="none" stroke="#1e1b4b" stroke-width="3.5" stroke-linecap="round" />
+      <path d="M 2 0 L 4 5" stroke="#1e1b4b" stroke-width="2.5" stroke-linecap="round" />
+      <!-- Iris -->
+      <ellipse cx="12" cy="14" rx="9" ry="12" fill="url(#irisGrad)" />
+      <!-- Pupil -->
+      <ellipse cx="12" cy="15" rx="5" ry="7" fill="#0f172a" />
+      <!-- Big Sparkle Catchlights -->
+      <circle cx="8" cy="9" r="4" fill="#ffffff" />
+      <circle cx="15" cy="18" r="2" fill="#ffffff" />
+      <!-- Bottom Eyelash Line -->
+      <path d="M 4 21 Q 12 26 22 23" fill="none" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" />
+    </g>
+
+    <!-- Anime Eyebrows -->
+    <path d="M 218 232 Q 232 222 246 228" fill="none" stroke="#713f12" stroke-width="2.5" stroke-linecap="round" />
+    <path d="M 274 228 Q 288 222 302 232" fill="none" stroke="#713f12" stroke-width="2.5" stroke-linecap="round" />
+
+    <!-- Anime Hair: Front Bangs & Highlights -->
+    <path d="M 195 210 Q 185 130 260 130 Q 335 130 325 210 Q 310 170 280 180 Q 255 170 230 190 Q 210 180 195 210 Z" fill="url(#hairGrad)" />
+    <!-- Flowing Bangs over Face -->
+    <path d="M 205 180 Q 215 240 225 245 Q 220 200 230 180 Z" fill="#713f12" />
+    <path d="M 240 175 Q 252 230 260 235 Q 265 200 270 175 Z" fill="#854d0e" />
+    <path d="M 285 180 Q 295 240 305 245 Q 300 200 305 180 Z" fill="#713f12" />
+    <!-- Anime Angel Halo Hair Shine -->
+    <path d="M 215 160 Q 260 148 305 160" fill="none" stroke="#fed7aa" stroke-width="4" stroke-linecap="round" opacity="0.8" />
+    <path d="M 225 168 Q 260 156 295 168" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.9" />
+
+    <!-- Cute Star Hairclip ⭐ -->
+    <g transform="translate(295, 175) scale(0.9)">
+      <polygon points="12,0 15,9 24,9 17,14 20,23 12,17 4,23 7,14 0,9 9,9" fill="#facc15" stroke="#ca8a04" stroke-width="1.5" />
+      <circle cx="12" cy="12" r="3" fill="#ffffff" />
+    </g>
+
+    <!-- Arms Holding Colorful Notebooks Stack -->
+    <!-- Left Arm -->
+    <path d="M 195 330 Q 165 370 215 420 L 235 405" fill="#312e81" stroke="#1e1b4b" stroke-width="2" />
+    <!-- Right Arm -->
+    <path d="M 325 330 Q 355 370 305 420 L 285 405" fill="#312e81" stroke="#1e1b4b" stroke-width="2" />
+
+    <!-- Stack of Colorful Spiral Notebooks with Price Tags -->
+    <g transform="translate(205, 365)">
+      <!-- Notebook 1 (Bottom - Blue) -->
+      <rect x="0" y="32" width="110" height="24" rx="4" fill="#0284c7" stroke="#0369a1" stroke-width="2" />
+      <line x1="8" y1="32" x2="8" y2="56" stroke="#fff" stroke-width="2" stroke-dasharray="2 3" />
+      <!-- Notebook 2 (Middle - Pink) -->
+      <rect x="8" y="16" width="105" height="22" rx="4" fill="#ec4899" stroke="#be185d" stroke-width="2" />
+      <line x1="16" y1="16" x2="16" y2="38" stroke="#fff" stroke-width="2" stroke-dasharray="2 3" />
+      <!-- Notebook 3 (Top - Golden Amber) -->
+      <rect x="14" y="0" width="100" height="22" rx="4" fill="#facc15" stroke="#d97706" stroke-width="2" />
+      <line x1="22" y1="0" x2="22" y2="22" stroke="#fff" stroke-width="2" stroke-dasharray="2 3" />
+      <!-- Heart sticker on top notebook -->
+      <text x="60" y="16" font-size="12" text-anchor="middle">✨ MATH ✨</text>
+    </g>
+    <!-- Cute hands supporting notebooks -->
+    <ellipse cx="208" cy="405" rx="10" ry="8" fill="#fed7aa" />
+    <ellipse cx="312" cy="405" rx="10" ry="8" fill="#fed7aa" />
+  </g>
+
+  <!-- FLOATING ANIME UI GLOWING CARDS (Top Right & Left) -->
+  <!-- Top Right Card: Fuel & Distance Linked -->
+  <g transform="translate(630, 80)" filter="url(#softGlow)">
+    <rect width="340" height="110" rx="24" fill="#150a36" fill-opacity="0.92" stroke="#38bdf8" stroke-width="3" />
+    <circle cx="50" cy="55" r="28" fill="#0369a1" />
+    <text x="50" y="66" font-size="30" text-anchor="middle">⛽</text>
+    <text x="145" y="63" font-size="32" fill="#facc15" font-weight="900" text-anchor="middle">➔</text>
+    <circle cx="240" cy="55" r="28" fill="#4338ca" />
+    <text x="240" y="66" font-size="30" text-anchor="middle">🚗</text>
+    <text x="190" y="96" font-family="'Fredoka One', Nunito, sans-serif" font-size="16" font-weight="900" fill="#38bdf8" text-anchor="middle">More Fuel = Farther Distance!</text>
+  </g>
+
+  <!-- Lower Right Card: Notebooks & Price Linked -->
+  <g transform="translate(590, 220)" filter="url(#softGlow)">
+    <rect width="380" height="110" rx="24" fill="#150a36" fill-opacity="0.92" stroke="#facc15" stroke-width="3" />
+    <circle cx="50" cy="55" r="28" fill="#ca8a04" />
+    <text x="50" y="66" font-size="30" text-anchor="middle">📓</text>
+    <text x="155" y="63" font-size="32" fill="#38bdf8" font-weight="900" text-anchor="middle">➔</text>
+    <circle cx="260" cy="55" r="28" fill="#15803d" />
+    <text x="260" y="66" font-size="30" text-anchor="middle">🪙</text>
+    <text x="210" y="96" font-family="'Fredoka One', Nunito, sans-serif" font-size="16" font-weight="900" fill="#fde047" text-anchor="middle">More Books = Higher Total Cost!</text>
+  </g>
+
+  <!-- Golden Title Plaque Banner (Top Center-Left) -->
+  <g transform="translate(60, 60)" filter="url(#animeGlow)">
+    <rect width="520" height="65" rx="32" fill="#150a36" fill-opacity="0.92" stroke="#c084fc" stroke-width="3" />
+    <text x="260" y="44" font-family="'Fredoka One', Nunito, sans-serif" font-size="28" font-weight="900" fill="#facc15" text-anchor="middle">
+      ✨ Quantities That Travel Together ✨
+    </text>
+  </g>
+
+  <!-- Sparkle Particle Flourishes -->
+  <g fill="#fde047" filter="url(#softGlow)">
+    <polygon points="520,190 524,202 536,202 526,210 530,222 520,214 510,222 514,210 504,202 516,202" />
+    <polygon points="460,420 463,430 473,430 465,436 468,446 460,440 452,446 455,436 447,430 457,430" transform="scale(0.8)" />
+    <polygon points="980,480 983,490 993,490 985,496 988,506 980,500 972,506 975,496 967,490 977,490" />
+    <polygon points="210,690 213,700 223,700 215,706 218,716 210,710 202,716 205,706 197,700 207,700" />
+  </g>
+</svg>
